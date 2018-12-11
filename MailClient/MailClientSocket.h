@@ -45,7 +45,7 @@ namespace yqs
 	class MailClientSocket
 	{
 	public:
-		MailClientSocket(AddressFamily addr_family = InterNetWork, SocketType socket_type = Stream, ProtocalType protocal_type = Tcp);
+		MailClientSocket();
 		MailServer GetMailServerType() const;
 		void SetService(MailServer server, bool use_ssl);
 		bool Connect();

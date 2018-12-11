@@ -12,10 +12,10 @@ namespace yqs
 		std::map<MailServer, const char*>::value_type(NetEase163Mail, "pop.163.com")
 	};
 
-	MailClientSocket::MailClientSocket(AddressFamily addr_family, SocketType socket_type, ProtocalType protocal_type)
+	MailClientSocket::MailClientSocket()
 	{
-		m_smtp_socket = socket(addr_family, socket_type, protocal_type);
-		m_pop3_socket = socket(addr_family, socket_type, protocal_type);
+		m_smtp_socket = socket(AddressFamily::InterNetWork, SocketType::Stream, ProtocalType::Tcp);
+		m_pop3_socket = socket(AddressFamily::InterNetWork, SocketType::Stream, ProtocalType::Tcp);
 	}
 
 	MailServer MailClientSocket::GetMailServerType() const
