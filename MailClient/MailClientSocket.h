@@ -66,9 +66,9 @@ namespace yqs
 	private:
 		int RecvSMTPAndCout(unsigned short state_code, const char* error_message);
 		/**
-		 * \brief 接收从
-		 * \param with_length 
-		 * \return 
+		 * \brief 接收从POP3服务器返回的数据
+		 * \param with_length 是否输出接收了多少btye的数据
+		 * \return 接收了多少btye的数据
 		 */
 		int RecvPOP3AndCout(bool with_length = true);
 		/**

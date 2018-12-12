@@ -111,7 +111,10 @@ int main()
 	WSAStartup(wVersionRequested, &wsaData);
 
 #ifdef USE_TEST
-	Test();
+	if (!Test())
+	{
+		std::cout << "运行测试用例失败，请检查网络环境" << std::endl;
+	}
 #else
 	char input[256];
 	while (true)

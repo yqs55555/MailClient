@@ -39,6 +39,11 @@ namespace yqs
 		sockaddr_in addrSrv;
 		hostent* pHostent;
 		pHostent = gethostbyname(m_smtp_address.at(m_mail_server));					//得到有关于域名的信息
+		if (pHostent == nullptr)
+		{
+			std::cout << "请检查网络环境是否正常" << std::endl;
+			return false;
+		}
 		addrSrv.sin_addr.S_un.S_addr = *reinterpret_cast<ULONG*>(pHostent->h_addr_list[0]);	//得到smtp服务器的网络字节序的ip地址 
 		addrSrv.sin_family = AF_INET;				//地址类型
 		addrSrv.sin_port = htons(m_use_ssl ? SMTP_PORT_USE_SSL : SMTP_PORT_NO_SSL);		//解析一个16bit的端口号
@@ -75,7 +80,10 @@ namespace yqs
 
 	bool MailClientSocket::Login(char* user_name, char * password, bool relogin)
 	{
-		Connect();
+		if (!Connect())
+		{
+			return false;
+		}
 		if (m_mail_server == QQMail)
 		{
 			if (strstr(user_name, "@qq.com") == nullptr)
